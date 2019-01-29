@@ -25,6 +25,7 @@
 		241B993B220034E000C3D3AB /* APIServiceObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241B993A220034E000C3D3AB /* APIServiceObject.swift */; };
 		241B993F220035EE00C3D3AB /* APIRequestProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241B993E220035EE00C3D3AB /* APIRequestProvider.swift */; };
 		241B99412200374000C3D3AB /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241B99402200374000C3D3AB /* PostService.swift */; };
+		241B99432200474A00C3D3AB /* PostObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241B99422200474A00C3D3AB /* PostObjectMapper.swift */; };
 		24D3C20121FEF21D009AA842 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D3C20021FEF21D009AA842 /* AppDelegate.swift */; };
 		24D3C20321FEF21D009AA842 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D3C20221FEF21D009AA842 /* ViewController.swift */; };
 		24D3C20621FEF21D009AA842 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24D3C20421FEF21D009AA842 /* Main.storyboard */; };
@@ -78,6 +79,7 @@
 		241B993A220034E000C3D3AB /* APIServiceObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceObject.swift; sourceTree = "<group>"; };
 		241B993E220035EE00C3D3AB /* APIRequestProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestProvider.swift; sourceTree = "<group>"; };
 		241B99402200374000C3D3AB /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
+		241B99422200474A00C3D3AB /* PostObjectMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostObjectMapper.swift; sourceTree = "<group>"; };
 		24D3C1FD21FEF21D009AA842 /* RikkeiSoftBegin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RikkeiSoftBegin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24D3C20021FEF21D009AA842 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		24D3C20221FEF21D009AA842 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 			children = (
 				241B99332200322B00C3D3AB /* PostDTO.swift */,
 				241B99352200326300C3D3AB /* Post.swift */,
+				241B99422200474A00C3D3AB /* PostObjectMapper.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -469,7 +472,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				$SRCROOT/RikkeiSoftBegin/Resources/Files/R.generated.swift,
+				"$SRCROOT/RikkeiSoftBegin/Resources/Files/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -529,6 +532,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-RikkeiSoftBegin/Pods-RikkeiSoftBegin-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
@@ -537,6 +541,7 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
@@ -569,6 +574,7 @@
 				24046ABB21FFF09C000C211C /* SupportViewController.swift in Sources */,
 				24046ACF21FFF4A1000C211C /* Ultils.swift in Sources */,
 				24046ACC21FFF3ED000C211C /* Constants.swift in Sources */,
+				241B99432200474A00C3D3AB /* PostObjectMapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,16 +14,32 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        bai4(arr: [-1, 2, 3, -8, 1, 6, -3, 4, 2, -8, 5])
+        bai4(arr: [-1, 2, -8, 8, -11, 6, -3, 4, 2, -8, 5])
         getData { (data) in
             for item in data {
-                print(item.body)
+//                print(item.body)
             }
         }
+        objectMapperParse()
         // Do any additional setup after loading the view, typically from a nib.
     }
     
     // MARK: - function
+    
+    func objectMapperParse() {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        services.objectMapperParse { (result) in
+            switch result {
+            case .success(let posts):
+                for item in posts {
+                    print("Body: \(item.body)")
+                }
+            case .failure(let error):
+                print("Fail get data")
+                print(error)
+            }
+        }
+    }
     
     func getData(_ completion: @escaping([Post]) -> Void) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
@@ -34,7 +50,6 @@ class ViewController: UIViewController {
                 for item in posts {
                     self.postArr.append(Post(item))
                 }
-                print(1)
                 completion(self.postArr)
             case .failure(let error):
                 print("Fail get data")
@@ -53,18 +68,17 @@ class ViewController: UIViewController {
         for i  in 0..<arr.count {
             currentSum = currentSum + Int(arr[i])
             sumCountEndIndex = i
-            
             if currentSum <= 0 {
                 currentSum = 0
                 sumCountStartIndex = i + 1
+            } else {
+                if maxSum < currentSum {
+                    maxIndexStart = sumCountStartIndex
+                    maxIndexEnd = sumCountEndIndex
+                    maxSum = currentSum
+                }
             }
-            
-            if maxSum < currentSum {
-                maxIndexStart = sumCountStartIndex
-                maxIndexEnd = sumCountEndIndex
-                maxSum = currentSum
-            }
-            
+ 
         }
         print("Vị trí bắt đầu: \(maxIndexStart)")
         print("Vị trí kết thúc: \(maxIndexEnd)")
