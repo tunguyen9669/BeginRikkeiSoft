@@ -7,15 +7,74 @@
 //
 
 import UIKit
+import Rswift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var tabbar: CustomTabbarController?
+    
+    func createTabbarControler() -> CustomTabbarController {
+        let tabbarController = CustomTabbarController()
+        tabbarController.tabBar.tintColor = UIColor.green
+        
+        guard let homeVC = R.storyboard.home.homeViewController(),
+            let carsVC = R.storyboard.dev.devViewController(),
+            let serviceVC = R.storyboard.service.serviceViewController(),
+            let newsVC = R.storyboard.news.newsViewController(),
+            let supportVC = R.storyboard.support.supportViewController()
+            else {return tabbarController}
+        
+        homeVC.title = "Home"
+        let homeTitle = "Home"
+        carsVC.title = "Dev"
+        let carTitle = "Car"
+        serviceVC.title = ""
+        newsVC.title = "News"
+        let newsTitle = "News"
+        supportVC.title = "Support"
+        let supportTitle = "Support"
+        
+        homeVC.tabBarItem = UITabBarItem(title: homeTitle.uppercased(), image: R.image.home()?.withRenderingMode(.alwaysOriginal), selectedImage: R.image.home_selected()?.withRenderingMode(.alwaysOriginal))
+        carsVC.tabBarItem = UITabBarItem(title: carTitle.uppercased(), image: R.image.cars()?.withRenderingMode(.alwaysOriginal), selectedImage: R.image.cars_selected()?.withRenderingMode(.alwaysOriginal))
+        serviceVC.tabBarItem = UITabBarItem(title: "", image: nil, tag: 2)
+        newsVC.tabBarItem = UITabBarItem(title: newsTitle.uppercased(), image: R.image.news()?.withRenderingMode(.alwaysOriginal), selectedImage: R.image.news_selected()?.withRenderingMode(.alwaysOriginal))
+        supportVC.tabBarItem = UITabBarItem(title: supportTitle.uppercased(), image: R.image.support()?.withRenderingMode(.alwaysOriginal), selectedImage: R.image.support_selected()?.withRenderingMode(.alwaysOriginal))
+        
+        let homeNav = UINavigationController(rootViewController: homeVC)
+        let carsNav = UINavigationController(rootViewController: carsVC)
+        let servicesNav = UINavigationController(rootViewController: serviceVC)
+        let newsNav = UINavigationController(rootViewController: newsVC)
+        let supportNav = UINavigationController(rootViewController: supportVC)
+        homeNav.navigationBar.isHidden = true
+        carsNav.navigationBar.isHidden = true
+        servicesNav.navigationBar.isHidden = true
+        newsNav.navigationBar.isHidden = true
+        supportNav.navigationBar.isHidden = true
+        
+        
+        tabbarController.viewControllers = [homeNav, carsNav, servicesNav, newsNav, supportNav]
+        
+        tabbarController.delegate = self
+        
+        return tabbarController
+    }
+    
+    func moveToHome(){
+        self.tabbar = self.createTabbarControler()
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        self.window?.rootViewController = self.tabbar
+        self.window?.makeKeyAndVisible()
+    }
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        moveToHome()
+        
+
         return true
     }
 
@@ -42,5 +101,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+}
+extension AppDelegate: UITabBarControllerDelegate {
+    
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        if let nav = tabBarController.viewControllers?[tabBarController.selectedIndex] as? UINavigationController {
+            nav.popToRootViewController(animated: false)
+        }
+        return true
+    }
+    
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        print("select item: \(viewController.title)")
+    }
 }
 
