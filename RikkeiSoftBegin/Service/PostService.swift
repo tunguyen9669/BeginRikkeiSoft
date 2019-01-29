@@ -20,7 +20,10 @@ class PostServices: APIServiceObject{
                 completion(Result.failure(error))
             } else {
                 
-                var list: Array<PostMap> = Mapper<PostMap>().mapArray(JSONString: json.description) ?? []
+//                // oject
+//                var postMap = Mapper<PostMap>().map(JSONString: json.description)
+                
+                let list: Array<PostMap> = Mapper<PostMap>().mapArray(JSONString: json.description) ?? []
                 completion(Result.success(list))
             }
         }
@@ -37,7 +40,6 @@ class PostServices: APIServiceObject{
 //                for item in list {
 //                    print(item.id)
 //                }
-                
                 var posts = [PostDTO]()
                 for item in json.arrayValue {
                     posts.append(PostDTO(item))

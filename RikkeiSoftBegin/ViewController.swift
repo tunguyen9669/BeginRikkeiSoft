@@ -32,7 +32,7 @@ class ViewController: UIViewController {
             switch result {
             case .success(let posts):
                 for item in posts {
-                    print("Body: \(item.body)")
+                    print("Body: \(item.getBody())")
                 }
             case .failure(let error):
                 print("Fail get data")

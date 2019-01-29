@@ -15,14 +15,27 @@ class PostMap: Mappable {
     var title: String?
     var body: String?
     
-required init?(map: Map) {
+    public func getUserId() -> Int {
+        return userID ?? 0
+    }
+    public func getId() -> Int {
+        return id ?? 0
+    }
+    public func getBody() -> String {
+        return body ?? ""
+    }
+    public func getTitle() -> String {
+        return title ?? ""
+    }
+    
+    required init?(map: Map) {
 //        self.id = 0
 //        self.userID = 0
 //        self.body = ""
 //        self.title = ""
     }
     
-func mapping(map: Map) {
+    func mapping(map: Map) {
         userID <- map["userId"]
         id <- map["id"]
         title <- map["title"]
